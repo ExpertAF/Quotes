@@ -128,16 +128,25 @@
     function changeFont() {
         var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
         document.body.style.fontFamily = randomFont;
+
+        // Save font size to local storage
+        localStorage.setItem('fontSize', fontSize);
     }
 
     function zoomIn() {
         fontSize += 2;
         document.getElementById("quote").style.fontSize = fontSize + "px";
+
+        // Save font size to local storage
+        localStorage.setItem('fontSize', fontSize);
     }
 
     function zoomOut() {
         fontSize = Math.max(10, fontSize - 2);
         document.getElementById("quote").style.fontSize = fontSize + "px";
+
+        // Save font size to local storage
+        localStorage.setItem('fontSize', fontSize);
     }
 
     function toggleMode() {
