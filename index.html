@@ -142,6 +142,21 @@
 
     function toggleMode() {
         document.body.classList.toggle("dark-mode");
+
+        // Save dark mode state to local storage
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    }
+
+    // Retrieve dark mode state from local storage
+    if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+    }
+
+    // Apply font size from local storage
+    var storedFontSize = localStorage.getItem('fontSize');
+    if (storedFontSize) {
+        fontSize = parseInt(storedFontSize);
+        document.getElementById("quote").style.fontSize = fontSize + "px";
     }
 
     window.onload = generateQuote;
