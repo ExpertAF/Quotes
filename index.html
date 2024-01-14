@@ -19,12 +19,21 @@
         }
 
         body.dark-mode {
-            background-color: #333;
+            background-color: #000; /* Updated to black */
             color: #fff;
         }
 
-        #quote {
+        #quote-container {
             margin-bottom: 20px;
+        }
+
+        #quote {
+            margin-bottom: 5px;
+        }
+
+        #author {
+            text-align: right;
+            font-weight: bold;
         }
 
         #buttons-container {
@@ -95,6 +104,11 @@
 </head>
 <body>
 
+<div id="quote-container">
+    <p id="quote"></p>
+    <p id="author"></p>
+</div>
+
 <div id="buttons-container">
     <button id="generate-btn" class="button" onclick="generateQuote()"></button>
     <button id="change-font-btn" class="button" onclick="changeFont()"></button>
@@ -102,8 +116,6 @@
     <button id="zoom-out-btn" class="button" onclick="zoomOut()"></button>
     <button id="toggle-mode-btn" class="button" onclick="toggleMode()"></button>
 </div>
-
-<p id="quote"></p>
 
 <script>
     var fonts = ['Arial', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana', 'Comic Sans MS', 'Impact', 'Lucida Console', 'Palatino Linotype'];
@@ -118,11 +130,21 @@
             "The future belongs to those who believe in the beauty of their dreams. - Eleanor Roosevelt"
         ];
 
+        var authors = [
+            "Steve Jobs",
+            "Winston Churchill",
+            "Steve Jobs",
+            "Theodore Roosevelt",
+            "Eleanor Roosevelt"
+        ];
+
         var randomIndex = Math.floor(Math.random() * quotes.length);
         var randomQuote = quotes[randomIndex];
+        var author = authors[randomIndex];
 
         document.getElementById("quote").textContent = randomQuote;
-        document.getElementById("quote").style.fontSize = fontSize + "px";
+        document.getElementById("author").textContent = author;
+        document.getElementById("quote-container").style.fontSize = fontSize + "px";
     }
 
     function changeFont() {
@@ -135,7 +157,7 @@
 
     function zoomIn() {
         fontSize += 2;
-        document.getElementById("quote").style.fontSize = fontSize + "px";
+        document.getElementById("quote-container").style.fontSize = fontSize + "px";
 
         // Save font size to local storage
         localStorage.setItem('fontSize', fontSize);
@@ -143,7 +165,7 @@
 
     function zoomOut() {
         fontSize = Math.max(10, fontSize - 2);
-        document.getElementById("quote").style.fontSize = fontSize + "px";
+        document.getElementById("quote-container").style.fontSize = fontSize + "px";
 
         // Save font size to local storage
         localStorage.setItem('fontSize', fontSize);
@@ -171,7 +193,7 @@
     var storedFontSize = localStorage.getItem('fontSize');
     if (storedFontSize) {
         fontSize = parseInt(storedFontSize);
-        document.getElementById("quote").style.fontSize = fontSize + "px";
+        document.getElementById("quote-container").style.fontSize = fontSize + "px";
     }
 
     window.onload = generateQuote;
