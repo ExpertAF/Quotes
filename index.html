@@ -85,7 +85,7 @@
         }
 
         body.dark-mode .button {
-            color: #ff0000; /* Red color for symbols in dark mode */
+            /* color: #ff0000; Red color for symbols in dark mode */
         }
 
         body.dark-mode #toggle-mode-btn::before {
@@ -129,8 +129,8 @@
         var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
         document.body.style.fontFamily = randomFont;
 
-        // Save font size to local storage
-        localStorage.setItem('fontSize', fontSize);
+        // Save font type to local storage
+        localStorage.setItem('fontType', randomFont);
     }
 
     function zoomIn() {
@@ -159,6 +159,12 @@
     // Retrieve dark mode state from local storage
     if (localStorage.getItem('darkMode') === 'true') {
         document.body.classList.add('dark-mode');
+    }
+
+    // Apply font type from local storage
+    var storedFontType = localStorage.getItem('fontType');
+    if (storedFontType) {
+        document.body.style.fontFamily = storedFontType;
     }
 
     // Apply font size from local storage
