@@ -8,15 +8,18 @@
     <style>
         html, body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: rgba(255, 255, 255, 0); /* Transparent white */
             margin: 0;
             padding: 0;
             height: 100%;
             transition: background-color 0.3s;
         }
 
+        body {
+            background-color: #fff; /* White background by default */
+        }
+
         body.dark-mode {
-            background-color: #000;
+            background-color: #000; /* Black background in dark mode */
             color: #fff;
         }
 
@@ -26,9 +29,10 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 70%; /* Set the width to 70% */
-            box-sizing: border-box; /* Include padding and border in the width calculation */
-            padding: 0 20px; /* Add some padding to the sides for better readability */
+            width: 70%;
+            box-sizing: border-box;
+            padding: 0 20px;
+            background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white background */
         }
 
         #quote {
