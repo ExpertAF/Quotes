@@ -135,19 +135,44 @@
     function changeFont() {
         var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
         document.body.style.fontFamily = randomFont;
+
+        // Save font type to local storage
+        localStorage.setItem('fontType', randomFont);
     }
 
     function zoomIn() {
         fontSize += 2;
         document.getElementById("quote-container").style.fontSize = fontSize + "px";
+
+        // Save font size to local storage
+        localStorage.setItem('fontSize', fontSize);
     }
 
     function zoomOut() {
         fontSize = Math.max(10, fontSize - 2);
         document.getElementById("quote-container").style.fontSize = fontSize + "px";
+
+        // Save font size to local storage
+        localStorage.setItem('fontSize', fontSize);
     }
 
-    window.onload = generateQuote;
+    window.onload = function () {
+        // Apply font type from local storage
+        var storedFontType = localStorage.getItem('fontType');
+        if (storedFontType) {
+            document.body.style.fontFamily = storedFontType;
+        }
+
+        // Apply font size from local storage
+        var storedFontSize = localStorage.getItem('fontSize');
+        if (storedFontSize) {
+            fontSize = parseInt(storedFontSize);
+            document.getElementById("quote-container").style.fontSize = fontSize + "px";
+        }
+
+        // Generate initial quote
+        generateQuote();
+    };
 </script>
 
 </body>
