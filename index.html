@@ -6,29 +6,11 @@
     <title>Quote Generator</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
-        :root {
-            --background-light: #fff; /* Light mode background color */
-            --background-dark: #000; /* Dark mode background color */
-            --text-light: #000; /* Light mode text color */
-            --text-dark: #fff; /* Dark mode text color */
-        }
-
         html, body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             height: 100%;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body {
-            background-color: var(--background-light);
-            color: var(--text-light);
-        }
-
-        body.dark-mode {
-            background-color: var(--background-dark) !important;
-            color: var(--text-dark);
         }
 
         #quote-container {
@@ -40,11 +22,7 @@
             width: 70%;
             box-sizing: border-box;
             padding: 0 20px;
-            background-color: var(--background-light); /* Default background color for the quote container */
-        }
-
-        body.dark-mode #quote-container {
-            background-color: var(--background-dark); /* Dark mode background color for the quote container */
+            background-color: transparent; /* Set background to transparent */
         }
 
         #quote {
@@ -105,21 +83,8 @@
             content: 'zoom_out'; /* Google's Material Icon for zoom out */
         }
 
-        #toggle-mode-btn::before {
-            font-family: 'Material Icons';
-            content: 'brightness_2'; /* Google's Material Icon for a moon */
-        }
-
         .button:hover {
             color: #555;
-        }
-
-        body.dark-mode .button {
-            color: #fff !important; /* White color for symbols in dark mode */
-        }
-
-        body.dark-mode #toggle-mode-btn::before {
-            content: 'wb_sunny'; /* Google's Material Icon for a sun in dark mode */
         }
     </style>
 </head>
@@ -135,7 +100,6 @@
     <button id="change-font-btn" class="button" onclick="changeFont()"></button>
     <button id="zoom-in-btn" class="button" onclick="zoomIn()"></button>
     <button id="zoom-out-btn" class="button" onclick="zoomOut()"></button>
-    <button id="toggle-mode-btn" class="button" onclick="toggleMode()"></button>
 </div>
 
 <script>
@@ -171,49 +135,15 @@
     function changeFont() {
         var randomFont = fonts[Math.floor(Math.random() * fonts.length)];
         document.body.style.fontFamily = randomFont;
-
-        // Save font type to local storage
-        localStorage.setItem('fontType', randomFont);
     }
 
     function zoomIn() {
         fontSize += 2;
         document.getElementById("quote-container").style.fontSize = fontSize + "px";
-
-        // Save font size to local storage
-        localStorage.setItem('fontSize', fontSize);
     }
 
     function zoomOut() {
         fontSize = Math.max(10, fontSize - 2);
-        document.getElementById("quote-container").style.fontSize = fontSize + "px";
-
-        // Save font size to local storage
-        localStorage.setItem('fontSize', fontSize);
-    }
-
-    function toggleMode() {
-        document.body.classList.toggle("dark-mode");
-
-        // Save dark mode state to local storage
-        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-    }
-
-    // Retrieve dark mode state from local storage
-    if (localStorage.getItem('darkMode') === 'true') {
-        document.body.classList.add('dark-mode');
-    }
-
-    // Apply font type from local storage
-    var storedFontType = localStorage.getItem('fontType');
-    if (storedFontType) {
-        document.body.style.fontFamily = storedFontType;
-    }
-
-    // Apply font size from local storage
-    var storedFontSize = localStorage.getItem('fontSize');
-    if (storedFontSize) {
-        fontSize = parseInt(storedFontSize);
         document.getElementById("quote-container").style.fontSize = fontSize + "px";
     }
 
