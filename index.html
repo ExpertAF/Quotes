@@ -40,7 +40,11 @@
             width: 70%;
             box-sizing: border-box;
             padding: 0 20px;
-            background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white background */
+            background-color: var(--background-light); /* Default background color for the quote container */
+        }
+
+        body.dark-mode #quote-container {
+            background-color: var(--background-dark); /* Dark mode background color for the quote container */
         }
 
         #quote {
