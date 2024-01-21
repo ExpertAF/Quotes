@@ -6,21 +6,29 @@
     <title>Quote Generator</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <style>
+        :root {
+            --background-light: #fff; /* Light mode background color */
+            --background-dark: #000; /* Dark mode background color */
+            --text-light: #000; /* Light mode text color */
+            --text-dark: #fff; /* Dark mode text color */
+        }
+
         html, body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             height: 100%;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         body {
-            background-color: #fff; /* White background by default */
+            background-color: var(--background-light);
+            color: var(--text-light);
         }
 
         body.dark-mode {
-            background-color: #000 !important; /* Black background in dark mode */
-            color: #fff;
+            background-color: var(--background-dark) !important;
+            color: var(--text-dark);
         }
 
         #quote-container {
