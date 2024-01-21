@@ -71,16 +71,20 @@
             border-radius: 5px;
             margin-right: 10px; /* Add margin between buttons */
             background-color: transparent;
-            color: #000;
+            color: #fff; /* Set button text color to white */
             transition: background-color 0.3s, color 0.3s;
         }
 
         .button:hover {
-            color: #555;
+            background-color: #555; /* Darken button background on hover */
         }
 
         body.dark-mode .button {
-            color: #fff !important; /* White color for symbols in dark mode */
+            color: #000; /* Set button text color to black in dark mode */
+        }
+
+        body.dark-mode .button:hover {
+            background-color: #ccc; /* Darken button background on hover in dark mode */
         }
     </style>
 </head>
@@ -166,7 +170,7 @@
 
         // Save dark mode state to local storage
         localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
-        
+
         // Adapt text and button colors based on dark mode
         adaptColors();
     }
@@ -175,11 +179,11 @@
         var isDarkMode = document.body.classList.contains('dark-mode');
         var textColor = isDarkMode ? '#fff' : '#000';
         var buttonColor = isDarkMode ? '#fff' : '#000';
-        
+
         // Apply adapted colors
         document.getElementById("quote").style.color = textColor;
         document.getElementById("author").style.color = textColor;
-        
+
         var buttons = document.getElementsByClassName('button');
         for (var i = 0; i < buttons.length; i++) {
             buttons[i].style.color = buttonColor;
